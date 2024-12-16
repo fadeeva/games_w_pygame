@@ -1,5 +1,6 @@
 import pygame
 
+
 display_width  = 1000
 display_height = 700
 
@@ -13,7 +14,14 @@ def game_loop():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+                
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                ludo_king_rect = ludo_king.get_rect(topleft = (365, 236))
+                if ludo_king_rect.collidepoint(event.pos):
+                    print('show ludo king board')
+            
         pygame.display.update()
+
             
 if __name__ == '__main__':
     pygame.init()
