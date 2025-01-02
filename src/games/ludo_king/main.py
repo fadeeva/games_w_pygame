@@ -1,4 +1,5 @@
 import pygame
+import random
 
 
 COLORS = {
@@ -14,25 +15,38 @@ SETTINGS = {
 }
 
 ATTR = {
-    'board': 'games/ludo_king/img/board.svg',
-    'circle': 'games/ludo_king/img/circle.svg',
-    'dice': 'games/ludo_king/img/dice.svg',
+    'board':  pygame.image.load('games/ludo_king/img/board.svg'),
+    'circle': pygame.image.load('games/ludo_king/img/circle.svg'),
+    'dice':   pygame.image.load('games/ludo_king/img/dice.svg'),
 }
+
+rec_REGISTOR = {}
+
+
+def get_name():
+    return 'ludo_king'
+
+def get_elm_by_click(pos):
+    pass
+
+
+def throw_dice():
+    return random.choice(range(1, 7))
 
 
 def draw_board(game_display):
     pygame.display.set_caption(SETTINGS['caption'])
     game_display.fill(SETTINGS['bg_clr'])
     
-    board = pygame.image.load(ATTR['board'])
-    game_display.blit(board, (218, 60))
+    game_display.blit(ATTR['board'], (218, 60))
     
-    circle = pygame.image.load(ATTR['circle'])
-    game_display.blit(circle, (63, 125))
-    game_display.blit(circle, (841, 483))
+    game_display.blit(ATTR['circle'], (63, 125))
+    rec_REGISTOR['right circle'] = ATTR['circle'].get_rect(topleft=(63, 125))
+    game_display.blit(ATTR['circle'], (841, 483))
+    rec_REGISTOR['left circle'] = ATTR['circle'].get_rect(topleft=(841, 483))
     
-    dice = pygame.image.load(ATTR['dice'])
-    game_display.blit(dice, (80, 141))
-    game_display.blit(dice, (858, 497))
+    game_display.blit(ATTR['dice'], (80, 141))
+    game_display.blit(ATTR['dice'], (858, 497))
+
     
     
