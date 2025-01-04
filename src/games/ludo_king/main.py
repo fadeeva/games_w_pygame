@@ -41,9 +41,9 @@ def draw_board(game_display):
     game_display.blit(ATTR['board'], (218, 60))
     
     game_display.blit(ATTR['circle'], (63, 125))
-    rec_REGISTOR['right circle'] = ATTR['circle'].get_rect(topleft=(63, 125))
+    rec_REGISTOR['circle'] = ATTR['circle'].get_rect(topleft=(63, 125))
+    
     game_display.blit(ATTR['circle'], (841, 483))
-    rec_REGISTOR['left circle'] = ATTR['circle'].get_rect(topleft=(841, 483))
     
     game_display.blit(ATTR['dice'], (80, 141))
     game_display.blit(ATTR['dice'], (858, 497))

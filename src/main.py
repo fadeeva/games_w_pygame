@@ -11,8 +11,7 @@ ludo_king_icon = 'img/ludo_king_icon.png'
 GAMES = {
     'ludo_king': {
         'MOUSEBUTTONDOWN': {
-            'left circle': ludo_king.throw_dice(),
-            'right circle': ludo_king.throw_dice()
+            'circle': ludo_king.throw_dice(),
         }
     }
 }
