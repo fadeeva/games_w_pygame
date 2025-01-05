@@ -11,7 +11,7 @@ ludo_king_icon = 'img/ludo_king_icon.png'
 GAMES = {
     'ludo_king': {
         'MOUSEBUTTONDOWN': {
-            'circle': ludo_king.throw_dice(),
+            'circle': ludo_king.throw_dice,
         }
     }
 }
@@ -22,8 +22,15 @@ def get_current_game(game):
         ludo_king=ludo_king,
     )
     return games[game]
-    
-    
+
+
+def get_elm(game, pos, event):
+    for name, elm in game.click_REGISTOR.items():
+        if elm.collidepoint(pos):
+            print(GAMES[game.get_name()][event][name]())
+            break
+
+
 def game_loop():
     running = True
     curr_GAME = ''
@@ -40,7 +47,7 @@ def game_loop():
                 continue
             
             if event.type == pygame.MOUSEBUTTONDOWN and curr_GAME:        
-                print(curr_GAME.rec_REGISTOR)
+                get_elm(curr_GAME, event.pos, 'MOUSEBUTTONDOWN')
             
         pygame.display.update()
 
