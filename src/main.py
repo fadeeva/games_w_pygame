@@ -9,11 +9,7 @@ black  = (3, 3, 15)
 ludo_king_icon = 'img/ludo_king_icon.png'
 
 GAMES = {
-    'ludo_king': {
-        'MOUSEBUTTONDOWN': {
-            'circle': ludo_king.throw_dice,
-        }
-    }
+    'ludo_king': ludo_king.EVENTS,
 }
 
 
@@ -27,7 +23,8 @@ def get_current_game(game):
 def get_elm(game, pos, event):
     for name, elm in game.click_REGISTOR.items():
         if elm.collidepoint(pos):
-            print(GAMES[game.get_name()][event][name]())
+#            print(GAMES[game.get_name()][event][name]())
+            print(name)
             break
 
 
