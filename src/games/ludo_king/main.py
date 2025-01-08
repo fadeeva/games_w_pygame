@@ -2,6 +2,8 @@ import pygame
 import random
 
 
+NAME = 'ludo_king'
+
 COLORS = {
     'beige'      : (201, 184, 167),
     'light beige': (229, 219, 207),
@@ -15,18 +17,17 @@ SETTINGS = {
 }
 
 ATTR = {
-    'board'    : pygame.image.load('games/ludo_king/img/board.svg'),
-    'circle'   : pygame.image.load('games/ludo_king/img/circle.svg'),
-    'dice'     : pygame.image.load('games/ludo_king/img/dice.svg'),
-    'yel_chip' : pygame.image.load('games/ludo_king/img/yellow_chip.svg'),
-    'red_chip' : pygame.image.load('games/ludo_king/img/red_chip.svg'),
+    'board'      : pygame.image.load('games/ludo_king/img/board.svg'),
+    'circle'     : pygame.image.load('games/ludo_king/img/circle.svg'),
+    'dice'       : pygame.image.load('games/ludo_king/img/dice.svg'),
+    'yel_chip'   : pygame.image.load('games/ludo_king/img/yellow_chip.svg'),
+    'red_chip'   : pygame.image.load('games/ludo_king/img/red_chip.svg'),
+    'back_btn'   : pygame.image.load('games/ludo_king/img/btn_arrow_back.svg'),
+    'replay_btn' : pygame.image.load('games/ludo_king/img/btn_arrow_replay.svg'),
+    'game_icon'  : pygame.image.load('games/ludo_king/img/icon_game.png'),
 }
 
 click_REGISTOR = {}
-
-
-def get_name():
-    return 'ludo_king'
 
 
 def get_elm_by_click(pos):
@@ -68,6 +69,13 @@ def draw_board(game_display):
     click_REGISTOR['red_chip_3'] = ATTR['red_chip'].get_rect(topleft=(321, 222))
     game_display.blit(ATTR['red_chip'], (378, 222))
     click_REGISTOR['red_chip_4'] = ATTR['red_chip'].get_rect(topleft=(378, 222))
+    
+    game_display.blit(ATTR['back_btn'], (936, 22))
+    click_REGISTOR['back_btn'] = ATTR['back_btn'].get_rect(topleft=(936, 22))
+    game_display.blit(ATTR['replay_btn'], (939, 123))
+    click_REGISTOR['replay_btn'] = ATTR['replay_btn'].get_rect(topleft=(939, 123))
+    
+    game_display.blit(ATTR['game_icon'], (910, 48))
     
 
 EVENTS = {

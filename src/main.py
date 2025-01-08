@@ -23,7 +23,7 @@ def get_current_game(game):
 def get_elm(game, pos, event):
     for name, elm in game.click_REGISTOR.items():
         if elm.collidepoint(pos):
-#            print(GAMES[game.get_name()][event][name]())
+#            print(GAMES[game.NAME][event][name]())
             print(name)
             break
 
