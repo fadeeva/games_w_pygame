@@ -80,6 +80,8 @@ def draw_board(game_display):
 
 EVENTS = {
     'MOUSEBUTTONDOWN': {
-        'circle': throw_dice,
+        'circle'  : throw_dice,
+        
+        'back_btn': 'CONTROL'
     }
 }
