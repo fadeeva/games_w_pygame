@@ -82,6 +82,7 @@ EVENTS = {
     'MOUSEBUTTONDOWN': {
         'circle'  : throw_dice,
         
-        'back_btn': 'CONTROL'
+        'back_btn'  : 'CONTROL',
+        'replay_btn': 'CONTROL',
     }
 }

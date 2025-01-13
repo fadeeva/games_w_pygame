@@ -1,11 +1,23 @@
 import pygame
 import games.ludo_king.main as ludo_king
 
-display_width  = 1000
-display_height = 700
 
-black  = (3, 3, 15)
+COLORS = {
+    'black' : (3, 3, 15)
+}
 
+SETTINGS = {
+        'bg_clr'      : COLORS['black'],
+        'caption'     : 'GAME W/ PYGAME',
+        'display_size': {
+            'width' : 1000,
+            'height': 700
+        }
+}
+
+ATTR = {
+    
+}
 
 ludo_king_icon = 'img/ludo_king_icon.png'
 
@@ -21,7 +33,7 @@ def get_elm(game, pos, event):
     for name, elm in game.click_REGISTOR.items():
         if elm.collidepoint(pos):
             if GAMES[game.NAME][event][name] == 'CONTROL':
-                GAMES['CONTROL'][name]
+                print(GAMES['CONTROL'][name])
                 break
 
             print(GAMES[game.NAME][event][name]())
@@ -54,24 +66,30 @@ GAMES = {
     'ludo_king': ludo_king.EVENTS,
     
     'CONTROL': {
-        'back_btn' : None, # must draw start screen
+        'back_btn'  : 'must draw start screen',
+        'replay_btn': 'start game again'
     }
 }
-    
+
+def draw_start_screen():
+    pass
         
 if __name__ == '__main__':
     pygame.init()
     
-    game_display = pygame.display.set_mode((display_width, display_height))
+    game_display = pygame.display.set_mode((
+        SETTINGS['display_size']['width'],
+        SETTINGS['display_size']['height']
+    ))
     
     ludo_king_main_icon = pygame.image.load(ludo_king_icon).convert_alpha()
     ludo_king_rect = ludo_king_main_icon.get_rect(topleft = (365, 236))
     
-    pygame.display.set_caption('GAME W/ PYGAME')
+    pygame.display.set_caption(SETTINGS['caption'])
     clock = pygame.time.Clock()
     
     
-    game_display.fill(black)
+    game_display.fill(COLORS['black'])
     game_display.blit(ludo_king_main_icon, (365, 236))
     
     game_loop()
