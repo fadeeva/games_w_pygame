@@ -34,8 +34,12 @@ def get_elm_by_click(pos):
     pass
 
 
-def throw_dice():
+def throw_dice(*args):
     return random.choice(range(1, 7))
+
+
+def click_on_chip(*args):
+    return f'{args} chip was clicked'
 
 
 def draw_board(game_display):
@@ -62,13 +66,9 @@ def draw_board(game_display):
     click_REGISTOR['yel_chip_4'] = ATTR['yel_chip'].get_rect(topleft=(648, 492))
     
     game_display.blit(ATTR['red_chip'], (321, 165))
-    click_REGISTOR['red_chip_1'] = ATTR['red_chip'].get_rect(topleft=(321, 165))
     game_display.blit(ATTR['red_chip'], (378, 165))
-    click_REGISTOR['red_chip_2'] = ATTR['red_chip'].get_rect(topleft=(378, 165))
     game_display.blit(ATTR['red_chip'], (321, 222))
-    click_REGISTOR['red_chip_3'] = ATTR['red_chip'].get_rect(topleft=(321, 222))
     game_display.blit(ATTR['red_chip'], (378, 222))
-    click_REGISTOR['red_chip_4'] = ATTR['red_chip'].get_rect(topleft=(378, 222))
     
     game_display.blit(ATTR['back_btn'], (936, 22))
     click_REGISTOR['back_btn'] = ATTR['back_btn'].get_rect(topleft=(936, 22))
@@ -82,7 +82,12 @@ EVENTS = {
     'MOUSEBUTTONDOWN': {
         'circle'  : throw_dice,
         
+        'yel_chip_1' : click_on_chip,
+        'yel_chip_2' : click_on_chip,
+        'yel_chip_3' : click_on_chip,
+        'yel_chip_4' : click_on_chip,
+        
         'back_btn'  : 'CONTROL',
-        'replay_btn': 'CONTROL',
+        'replay_btn': throw_dice, #draw_board,
     }
 }
