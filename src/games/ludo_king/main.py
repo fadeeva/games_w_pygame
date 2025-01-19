@@ -16,6 +16,11 @@ SETTINGS = {
         'caption': 'Ludo King',
 }
 
+pygame.mixer.init()
+SOUNDS = {
+    'rolling dice': pygame.mixer.Sound('games/ludo_king/sounds/dice34roll.mp3'),
+}
+
 ATTR = {
     'board'      : pygame.image.load('games/ludo_king/img/board.svg'),
     'circle'     : pygame.image.load('games/ludo_king/img/circle.svg'),
@@ -25,18 +30,29 @@ ATTR = {
     'back_btn'   : pygame.image.load('games/ludo_king/img/btn_arrow_back.svg'),
     'replay_btn' : pygame.image.load('games/ludo_king/img/btn_arrow_replay.svg'),
     'game_icon'  : pygame.image.load('games/ludo_king/img/icon_game.png'),
+    
+    '1 dice'     : pygame.image.load('games/ludo_king/img/1_dice.svg'),
+    '2 dice'     : pygame.image.load('games/ludo_king/img/2_dice.svg'),
+    '3 dice'     : pygame.image.load('games/ludo_king/img/3_dice.svg'),
+    '4 dice'     : pygame.image.load('games/ludo_king/img/4_dice.svg'),
+    '5 dice'     : pygame.image.load('games/ludo_king/img/5_dice.svg'),
+    '6 dice'     : pygame.image.load('games/ludo_king/img/6_dice.svg'),
 }
 
 click_REGISTOR = {}
 
 
-def get_elm_by_click(pos):
-    pass
-
-
-def throw_dice(*args):
-    return random.choice(range(1, 7))
-
+def throw_dice(name, gd, side='right'):
+    right = (862, 501)
+    left = (84, 145)
+    
+    side = right if side else left
+    
+    SOUNDS['rolling dice'].play()
+    
+    choice = random.choice(range(1, 7))
+    gd.blit(ATTR[f'{choice} dice'], side)
+    
 
 def click_on_chip(*args):
     return f'{args} chip was clicked'
