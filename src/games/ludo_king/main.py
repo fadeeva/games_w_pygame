@@ -1,8 +1,10 @@
 import pygame
 import random
+import time
 
 
 NAME = 'ludo_king'
+GD = None
 
 COLORS = {
     'beige'      : (201, 184, 167),
@@ -40,25 +42,41 @@ ATTR = {
 }
 
 click_REGISTOR = {}
+POINTS = {}
+LOCK = False
 
-
-def throw_dice(name, gd, side='right'):
+def throw_dice(name='bot', side='right'):    
     right = (862, 501)
     left = (84, 145)
     
-    side = right if side else left
+    side = right if side=='right' else left
     
     SOUNDS['rolling dice'].play()
     
     choice = random.choice(range(1, 7))
-    gd.blit(ATTR[f'{choice} dice'], side)
+    GD.blit(ATTR[f'{choice} dice'], side)
+    POINTS[name] = choice
     
+    next_move()
 
+    
+def next_move():
+    pass
+    
+    
 def click_on_chip(*args):
     return f'{args} chip was clicked'
 
 
+def replay_game(*args):
+    if GD:
+        draw_board(GD)
+
+
 def draw_board(game_display):
+    global GD
+    GD = game_display
+    
     pygame.display.set_caption(SETTINGS['caption'])
     game_display.fill(SETTINGS['bg_clr'])
     
@@ -67,7 +85,7 @@ def draw_board(game_display):
     game_display.blit(ATTR['circle'], (63, 125))
     
     game_display.blit(ATTR['circle'], (841, 483))
-    click_REGISTOR['circle'] = ATTR['circle'].get_rect(topleft=(841, 483))
+    click_REGISTOR['user'] = ATTR['circle'].get_rect(topleft=(841, 483))
     
     game_display.blit(ATTR['dice'], (80, 141))
     game_display.blit(ATTR['dice'], (858, 497))
@@ -96,7 +114,7 @@ def draw_board(game_display):
 
 EVENTS = {
     'MOUSEBUTTONDOWN': {
-        'circle'  : throw_dice,
+        'user'  : throw_dice,
         
         'yel_chip_1' : click_on_chip,
         'yel_chip_2' : click_on_chip,
@@ -104,6 +122,6 @@ EVENTS = {
         'yel_chip_4' : click_on_chip,
         
         'back_btn'  : 'CONTROL',
-        'replay_btn': throw_dice, #draw_board,
+        'replay_btn': replay_game,
     }
 }

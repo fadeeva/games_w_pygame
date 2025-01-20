@@ -37,7 +37,7 @@ def get_elm(game, pos, event):
                 GAMES['CONTROL'][name]()
                 break
 
-            GAMES[game.NAME][event][name](name, game_display)
+            GAMES[game.NAME][event][name](name)
             break
 
 
