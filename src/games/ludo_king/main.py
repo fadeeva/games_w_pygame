@@ -41,6 +41,16 @@ ATTR = {
     '6 dice'     : pygame.image.load('games/ludo_king/img/6_dice.svg'),
 }
 
+BASE = { # base positions coords
+    'yel_chip_1': (591, 435),
+    'yel_chip_2': (648, 435),
+    'yel_chip_3': (591, 492),
+    'yel_chip_4': (648, 492),
+    
+}
+
+CHIPS = {} # current chips coords
+
 click_REGISTOR = {}
 POINTS = {}
 LOCK = False
@@ -57,15 +67,23 @@ def throw_dice(name='bot', side='right'):
     GD.blit(ATTR[f'{choice} dice'], side)
     POINTS[name] = choice
     
-    next_move()
+    
+def click_on_chip(name):
+    print(check_move(name))
 
+
+def check_move(name):
+    if POINTS['user'] == 6 and CHIPS[name] == BASE[name]:
+        POINTS['user'] = 0
+        return 'move is LEGAL'
+    return 'move is ILLEGAL'
     
-def next_move():
+
+def return_to_base():
     pass
-    
-    
-def click_on_chip(*args):
-    return f'{args} chip was clicked'
+
+
+
 
 
 def replay_game(*args):
@@ -90,14 +108,18 @@ def draw_board(game_display):
     game_display.blit(ATTR['dice'], (80, 141))
     game_display.blit(ATTR['dice'], (858, 497))
     
-    game_display.blit(ATTR['yel_chip'], (591, 435))
-    click_REGISTOR['yel_chip_1'] = ATTR['yel_chip'].get_rect(topleft=(591, 435))
-    game_display.blit(ATTR['yel_chip'], (648, 435))
-    click_REGISTOR['yel_chip_2'] = ATTR['yel_chip'].get_rect(topleft=(648, 435))
-    game_display.blit(ATTR['yel_chip'], (591, 492))
-    click_REGISTOR['yel_chip_3'] = ATTR['yel_chip'].get_rect(topleft=(591, 492))
-    game_display.blit(ATTR['yel_chip'], (648, 492))
-    click_REGISTOR['yel_chip_4'] = ATTR['yel_chip'].get_rect(topleft=(648, 492))
+    game_display.blit(ATTR['yel_chip'], BASE['yel_chip_1'])
+    click_REGISTOR['yel_chip_1'] = ATTR['yel_chip'].get_rect(topleft=BASE['yel_chip_1'])
+    CHIPS['yel_chip_1'] = BASE['yel_chip_1']
+    game_display.blit(ATTR['yel_chip'], BASE['yel_chip_2'])
+    click_REGISTOR['yel_chip_2'] = ATTR['yel_chip'].get_rect(topleft=BASE['yel_chip_2'])
+    CHIPS['yel_chip_2'] = BASE['yel_chip_2']
+    game_display.blit(ATTR['yel_chip'], BASE['yel_chip_3'])
+    click_REGISTOR['yel_chip_3'] = ATTR['yel_chip'].get_rect(topleft=BASE['yel_chip_3'])
+    CHIPS['yel_chip_3'] = BASE['yel_chip_3']
+    game_display.blit(ATTR['yel_chip'], BASE['yel_chip_4'])
+    click_REGISTOR['yel_chip_4'] = ATTR['yel_chip'].get_rect(topleft=BASE['yel_chip_4'])
+    CHIPS['yel_chip_4'] = BASE['yel_chip_4']
     
     game_display.blit(ATTR['red_chip'], (321, 165))
     game_display.blit(ATTR['red_chip'], (378, 165))
