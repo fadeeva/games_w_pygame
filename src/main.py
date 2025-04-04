@@ -1,3 +1,5 @@
+import types
+
 import pygame
 import games.ludo_king.main as ludo_king
 
@@ -23,14 +25,14 @@ ATTR = {
 
 click_REGISTOR = {}
 
-def get_current_game(game):
+def get_current_game(game:str)->types.ModuleType:
     games = dict(
         ludo_king=ludo_king,
     )
     return games[game]
 
 
-def get_elm(game, pos, event):
+def get_elm(game:types.ModuleType, pos:tuple, event:str)->None:
     for name, elm in game.click_REGISTOR.items():
         if elm.collidepoint(pos):
             if GAMES[game.NAME][event][name] == 'CONTROL':
@@ -41,7 +43,7 @@ def get_elm(game, pos, event):
             break
 
 
-def game_loop():
+def game_loop()->None:
     running = True
     global curr_GAME
     while running:
@@ -62,7 +64,7 @@ def game_loop():
         pygame.display.update()
 
 
-def draw_start_screen():
+def draw_start_screen()->None:
     global curr_GAME
     curr_GAME = ''
     
@@ -97,3 +99,5 @@ if __name__ == '__main__':
     
     pygame.quit()
     quit()
+    
+    
